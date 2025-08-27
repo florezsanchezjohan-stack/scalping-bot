@@ -2,12 +2,13 @@ import requests
 import pandas as pd
 import ta
 import time
+import os
 
 # ==========================
-# 📌 DATOS DEL BOT
+# 📌 DATOS DEL BOT (desde variables de entorno en Render)
 # ==========================
-TOKEN = "8302022116:AAEBzzmCv9oy-aSeRGyhFDWbOVCktxC_MWg"   # 👉 pon tu token real
-CHAT_ID = "7147837684"  # 👉 pon tu chat_id real
+TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 URL = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 
 def send_signal(message):
@@ -74,11 +75,17 @@ SL: {sl}
 
 pares = ["BTCUSDT","ETHUSDT","SOLUSDT","NOTUSDT","WUSDT","ENAUSDT","AEVOUSDT","ALTUSDT"]
 
-while True:
-    for par in pares:
-        try:
-            check_signal(par)
-        except Exception as e:
-            print(f"Error en {par}: {e}")
-    time.sleep(300)  # 5 minutos
-
+if __name__ == "__main__":
+    if not TOKEN or not CHAT_ID:
+        print("❌ ERROR: faltan TELEGRAM_BOT_TOKEN o TELEGRAM_CHAT_ID en Render")
+    else:
+        # ✅ Mensaje de prueba al iniciar
+        send_signal("🤖 Bot scalping conectado con éxito ✅")
+        while True:
+            for par in pares:
+                try:
+                    check_signal(par)
+                except Exception as e:
+                    print(f"Error en {par}: {e}")
+            time.sleep(300)  # 5 minutos
+    
