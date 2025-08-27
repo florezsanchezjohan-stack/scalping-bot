@@ -1,2 +1,2 @@
 #!/bin/bash
-python bot_scalping.py
+python3 bot_scalping.py
