@@ -6,8 +6,8 @@ import time
 # ==========================
 # 📌 DATOS DEL BOT
 # ==========================
-TOKEN = "AQUI_TU_TOKEN"   # 👉 pon tu token real
-CHAT_ID = "AQUI_TU_CHAT_ID"  # 👉 pon tu chat_id real
+TOKEN = "8302022116:AAEBzzmCv9oy-aSeRGyhFDWbOVCktxC_MWg"   # 👉 pon tu token real
+CHAT_ID = "7147837684"  # 👉 pon tu chat_id real
 URL = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 
 def send_signal(message):
@@ -81,3 +81,4 @@ while True:
         except Exception as e:
             print(f"Error en {par}: {e}")
     time.sleep(300)  # 5 minutos
+
